@@ -13,7 +13,7 @@ If they match closely, then the module is working!
 #include <RF24.h>
 #include <printf.h>
 
-RF24 radio(7, 8);
+RF24 radio(7, 8); // for Arduino Uno / Nano these are the pins
 
 byte addresses[][6] = {"1Node", "2Node"};
 
