@@ -1,0 +1,2 @@
+ipconfig getiflist
+ipconfig getifaddr en0
