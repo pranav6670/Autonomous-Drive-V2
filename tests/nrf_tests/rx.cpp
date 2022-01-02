@@ -4,8 +4,7 @@
 #include <RF24.h>
 #include <Adafruit_NeoPixel.h>
 
-
-#define LED_PIN   2
+#define LED_PIN   6
 #define LED_COUNT 2
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
@@ -21,7 +20,7 @@ void setup() {
   radio.startListening();
   strip.begin();
   strip.show();
-  strip.setBrightness(50);
+  strip.setBrightness(255);
 }
 
 void forward() {
