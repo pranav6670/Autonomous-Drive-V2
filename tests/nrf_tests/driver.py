@@ -4,13 +4,14 @@ import serial
 import pygame
 from pygame.locals import *
 
+
 class RCTest(object):
 
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((200, 200))
         pygame.display.set_caption('Control RC Car')
-        self.ser = serial.Serial("/dev/cu.usbserial-14110", 115200, timeout=1)
+        self.ser = serial.Serial("/dev/cu.usbserial-14230", 115200, timeout=1)
         self.send_inst = True
         self.steer()
 
@@ -26,7 +27,6 @@ class RCTest(object):
                         print("Forward")
                         self.printtodisplay("Forward", 0, 50, 0)
                         self.ser.write(chr(1).encode())
-
 
                     elif key_input[pygame.K_DOWN]:
                         print("Reverse")
@@ -60,7 +60,7 @@ class RCTest(object):
         self.text = text
         self.R, self.G, self.B = R, G, B
         font = pygame.font.Font(None, 50)
-        self.screen.fill ((self.R, self.G, self.B))
+        self.screen.fill((self.R, self.G, self.B))
         block = font.render(self.text, True, (255, 255, 255))
         rect = block.get_rect()
         rect.center = self.screen.get_rect().center
