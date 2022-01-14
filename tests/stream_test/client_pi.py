@@ -19,7 +19,7 @@ try:
 
         # send jpeg format video stream
         for foo in camera.capture_continuous(stream, 'jpeg', use_video_port=True):
-            connection.write( struct.pack('<L', stream.tell()))
+            connection.write(struct.pack('<L', stream.tell()))
             connection.flush()
             stream.seek(0)
             connection.write(stream.read())
@@ -27,7 +27,7 @@ try:
                 break
             stream.seek(0)
             stream.truncate()
-    connection.write( struct.pack('<L', 0))
+    connection.write(struct.pack('<L', 0))
 
 finally:
     connection.close()

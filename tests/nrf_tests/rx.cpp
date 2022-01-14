@@ -16,7 +16,9 @@
 #define LED_COUNT 2
 
 Adafruit_NeoPixel pixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+
 LcdBarGraphRobojax a_0(&lcd, 8, 2, 0);  //lcd obj, length of bar graph, start(column), line(row)
 LcdBarGraphRobojax a_1(&lcd, 8, 2, 1);
 
@@ -35,7 +37,6 @@ void setup() {
   lcd.init();
   lcd.backlight();
   lcd.clear();
-  delay(1000);
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
   pinMode(in3, OUTPUT);
@@ -68,7 +69,6 @@ void left() {
   digitalWrite(in2, HIGH);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  digitalWrite(16, HIGH);
   pixel.setPixelColor(0, 255, 0, 255);
   pixel.setPixelColor(1, 255, 0, 255);
   pixel.show();
@@ -78,7 +78,6 @@ void right() {
   digitalWrite(in2, LOW);
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
-  digitalWrite(14, HIGH);
   pixel.setPixelColor(0, 0, 255, 255);
   pixel.setPixelColor(1, 0, 255, 255);
   pixel.show();
@@ -94,18 +93,15 @@ void stopp() {
   pixel.show();
 }
 
-int speeda = 150;
-int speedb = 100;
-
 void loop() {
   int a = analogRead(A0);
   int b = analogRead(A1);
-  a_0.drawValue(a, 1024);
-  a_1.drawValue(b, 1024);
   float val1 = map(a, 0, 1023, 0, 255);
   float val2 = map(b, 0, 1023, 0, 255);
   analogWrite(ena, val1);
   analogWrite(enb, val2);
+  a_0.drawValue(a, 1024);
+  a_1.drawValue(b, 1024);
   lcd.setCursor (0, 0);
   lcd.print("A:");
   lcd.setCursor (0, 1);
@@ -117,7 +113,7 @@ void loop() {
   if (radio.available()) {
     char text[32];
     radio.read(&text, sizeof(text));
-    Serial.println(text);
+    //    Serial.println(text);
     if (strcmp("Forward", text) == 0) {
       forward();
     }
@@ -134,8 +130,8 @@ void loop() {
       stopp();
     }
     else {
-      Serial.print(text);
-      Serial.print("Don't come here");
+      //      Serial.print(text);
+      //      Serial.print("Don't come here");
     }
   }
 }
