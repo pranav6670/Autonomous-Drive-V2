@@ -11,7 +11,7 @@ class RCTest(object):
         pygame.init()
         self.screen = pygame.display.set_mode((200, 200))
         pygame.display.set_caption('Control RC Car')
-        self.ser = serial.Serial("/dev/cu.usbserial-14230", 115200, timeout=1)
+        self.ser = serial.Serial("/dev/cu.usbserial-14130", 115200, timeout=1)
         self.send_inst = True
         self.steer()
 
